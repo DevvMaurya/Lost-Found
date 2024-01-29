@@ -58,6 +58,21 @@ figure img{
   width: 100%;
   /* border: 10px solid black; */
 }
+#login-img
+{
+  width: 36vh
+}
+#login-form h2
+{
+  margin-bottom: 4%;
+}
+.login-image{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 /* #green_el
 {
     height: 100vh;

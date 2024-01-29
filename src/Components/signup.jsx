@@ -8,7 +8,7 @@ const SignUpForm = () => {
   return (
     <div className="main">
       <section className="signup">
-      {/* <div id="green_el"></div> */}
+      <div id="green_el"></div>
         <div className="container">
           <div className="signup-content">
             <div className="signup-form">
