@@ -22,11 +22,12 @@ function LoginForm() {
           <div className="signup-content">
             <div className="login-image">
               <figure>
-                <img src="./imgs/login_vector.png" alt="login image" id="login-img" />
+                <img
+                  src="./imgs/login_vector.png"
+                  alt="login image"
+                  id="login-img"
+                />
               </figure>
-              <a href="signup" className="signup-image-link">
-                don't have account
-              </a>
             </div>
             <div className="signup-form">
               <form method="POST" className="register-form" id="login-form">
@@ -54,7 +55,9 @@ function LoginForm() {
                     placeholder="Password"
                   />
                 </div>
-
+                <a href="signup" className="signup-image-link">
+                  don't have account
+                </a>
                 <div className="form-group form-button">
                   <input
                     type="submit"
