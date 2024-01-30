@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -13,6 +13,55 @@ function Login() {
 
 function LoginForm() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState();
+  const [password, setPass] = useState();
+  const [error, setErr] = useState();
+
+  const postData = async () => {
+    const data = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await fetch("http://localhost:4000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response) {
+        throw new Error("Response is undefined or null");
+      }
+
+      const responseData = await response.json();
+      console.log(responseData);
+
+      // Check if there is a redirectUrl in the response data
+      if (responseData.redirectUrl) {
+        window.location.href = responseData.redirectUrl;
+      }
+      else{
+        if(responseData.err)
+        setErr(<h4 className="error">{responseData.err}</h4>) 
+      }
+    } catch (error) {
+      console.error("Error posting data:", error);
+    }
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    console.log(email + "  " + password);
+    if (!email || !password ) {
+      setErr(<h4 className="error_re">⚠️All fields are required.</h4>);
+      return;
+    }
+    postData();
+  };
 
   return (
     <div className="main">
@@ -42,6 +91,7 @@ function LoginForm() {
                     name="email"
                     id="email"
                     placeholder="Your Email"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="form-group">
@@ -53,8 +103,10 @@ function LoginForm() {
                     name="pass"
                     id="pass"
                     placeholder="Password"
+                    onChange={(e) => setPass(e.target.value)}
                   />
                 </div>
+                {error}
                 <a href="signup" className="signup-image-link">
                   don't have account
                 </a>
@@ -65,6 +117,7 @@ function LoginForm() {
                     id="signin"
                     className="form-submit"
                     value="Login"
+                    onClick={handleLogin}
                   />
                 </div>
               </form>
