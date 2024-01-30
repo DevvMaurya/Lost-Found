@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1:27017/lostFoundDB');
+mongoose.connect('mongodb+srv://user:user@cluster0.339bpnm.mongodb.net/');
 
 const itemSchema = new mongoose.Schema({
   name: {
